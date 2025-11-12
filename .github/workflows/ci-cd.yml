@@ -61,9 +61,9 @@ jobs:
             echo "📦 Starting new backend container..."
             docker run -d \
               --name agrosmart-backend \
-              --network agrosmart-network \ 
+              --network agrosmart-network \
               --env-file /srv/agrosmart/app.env \
               -p 8983:8983 \
               ${{ secrets.DOCKERHUB_USERNAME }}/agrosmart-backend:latest
+
             echo "✅ Backend successfully deployed!"
-#dp
