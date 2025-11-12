@@ -1,0 +1,76 @@
+package dev.gagnon.bfpcapi.data.model;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import dev.gagnon.bfpcapi.data.constants.Role;
+import dev.gagnon.bfpcapi.data.constants.UserStatus;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Set;
+
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.FetchType.EAGER;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Builder
+@Table(name = "_users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+    private BigDecimal payoutAmount;
+    @Column(nullable = false)
+    private String firstName;
+    
+    @Column(nullable = false)
+    private String lastName;
+    @ElementCollection(fetch=EAGER)
+    @Enumerated(STRING)
+    private Set<Role> roles;
+    private String phone;
+    private String nin;
+    private String mediaUrl;
+    @Column(nullable = false)
+    private String password;
+
+    @Column(name = "current_token",columnDefinition = "text")
+    private String currentToken;
+
+    @Enumerated(EnumType.STRING)
+    private UserStatus status = UserStatus.PENDING;
+
+    @Setter(AccessLevel.NONE)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime createdAt;
+    @Setter(AccessLevel.NONE)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime updatedAt;
+
+    @Transient
+    private Collection<? extends GrantedAuthority> authorities;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+}
