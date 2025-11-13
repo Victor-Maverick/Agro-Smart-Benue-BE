@@ -163,7 +163,7 @@ public class OTPServiceImpl implements OTPService {
         
         // Send OTP email
         try {
-//            emailService.sendOTPEmail(user.getEmail(), user.getFirstName(), newToken.getOtp());
+            emailService.sendOTPEmail(user.getEmail(), user.getFirstName(), newToken.getOtp());
             return true;
         } catch (Exception e) {
             log.error("Failed to send OTP email to {}: {}", user.getEmail(), e.getMessage());

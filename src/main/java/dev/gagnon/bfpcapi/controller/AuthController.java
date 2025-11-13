@@ -158,7 +158,6 @@ public class AuthController {
         return cookie;
     }
 
-
     @PutMapping("/change-password")
     public ResponseEntity<?>changePassword(@RequestBody PasswordRequest passwordRequest) {
         try {
@@ -182,7 +181,6 @@ public class AuthController {
                 "email", user.getEmail()
         ));
     }
-
 
     @GetMapping("/verify")
     public ResponseEntity<?> verifyUser(@RequestParam String token) {

@@ -67,9 +67,9 @@ public class UserServiceImpl implements UserService {
         user.getRoles().add(Role.FARMER);
         User savedUser = userRepository.save(user);
 
-//        // Create OTP token and send OTP email
-//        VerificationToken verificationToken = otpService.createOTPToken(savedUser);
-//        emailService.sendOTPEmail(savedUser.getEmail(), savedUser.getFirstName(), verificationToken.getOtp());
+        // Create OTP token and send OTP email
+        VerificationToken verificationToken = otpService.createOTPToken(savedUser);
+        emailService.sendOTPEmail(savedUser.getEmail(), savedUser.getFirstName(), verificationToken.getOtp());
         RegisterResponse response = modelMapper.map(savedUser, RegisterResponse.class);
         response.setMessage("User registered successfully.");
         return response;
@@ -110,7 +110,6 @@ public class UserServiceImpl implements UserService {
         // Create new verification token
         VerificationToken newToken = new VerificationToken(user);
         tokenRepository.save(newToken);
-
         // Send verification email
         emailService.sendVerificationEmail(user.getEmail(), user.getFirstName(), newToken.getToken(), "https://marketplace.bdic.ng/register/emailVerification");
     }
