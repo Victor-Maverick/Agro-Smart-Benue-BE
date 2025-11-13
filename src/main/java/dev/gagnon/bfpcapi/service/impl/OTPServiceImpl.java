@@ -29,8 +29,8 @@ public class OTPServiceImpl implements OTPService {
 
     @Override
     public String generateOTP() {
-        // Generate 4-digit OTP
-        int otp = 1000 + secureRandom.nextInt(9000);
+        // Generate 6-digit OTP
+        int otp = 100000 + secureRandom.nextInt(900000);
         return String.valueOf(otp);
     }
 
