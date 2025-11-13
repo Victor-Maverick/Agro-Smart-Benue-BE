@@ -15,19 +15,14 @@ public class VerificationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true)
     private String token;
-
-    @Column(length = 4)
+    @Column(length = 6)
     private String otp;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", unique = true)
     private User user;
-
     private LocalDateTime expiryDate;
-    
     private LocalDateTime otpExpiryDate;
 
     @Enumerated(EnumType.STRING)
@@ -37,7 +32,7 @@ public class VerificationToken {
     private Integer otpAttempts = 0;
 
     @Column(name = "max_attempts")
-    private Integer maxAttempts = 5;
+    private Integer maxAttempts = 8;
 
     // constructors, getters and setters
     public VerificationToken(User user) {
