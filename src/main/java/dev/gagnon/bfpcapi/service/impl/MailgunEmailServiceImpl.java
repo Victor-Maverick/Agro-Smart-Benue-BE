@@ -150,9 +150,8 @@ public class MailgunEmailServiceImpl implements EmailService {
             <table cellpadding="0" cellspacing="0" border="0" width="100%%" style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
                 <tr>
                     <td style="background: linear-gradient(135deg, #16a34a 0%%, #15803d 100%%); padding: 40px 30px; text-align: center; position: relative;">
-                        <img src="https://bfpc-api.onrender.com/header%%20image.png" alt="Agro Smart Benue" style="max-width: 180px; height: auto; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                        <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
-                        <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;">Empowering Farmers, Growing Communities</p>
+                        <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
+                        <p style="color: rgba(255,255,255,0.9); margin: 12px 0 0 0; font-size: 15px;">Empowering Farmers, Growing Communities</p>
                     </td>
                 </tr>
                 <tr>
@@ -212,9 +211,8 @@ public class MailgunEmailServiceImpl implements EmailService {
             <table cellpadding="0" cellspacing="0" border="0" width="100%%" style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
                 <tr>
                     <td style="background: linear-gradient(135deg, #16a34a 0%%, #15803d 100%%); padding: 40px 30px; text-align: center; position: relative;">
-                        <img src="https://bfpc-api.onrender.com/header%%20image.png" alt="Agro Smart Benue" style="max-width: 180px; height: auto; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                        <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
-                        <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;">Empowering Farmers, Growing Communities</p>
+                        <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
+                        <p style="color: rgba(255,255,255,0.9); margin: 12px 0 0 0; font-size: 15px;">Empowering Farmers, Growing Communities</p>
                     </td>
                 </tr>
                 <tr>
@@ -278,9 +276,8 @@ public class MailgunEmailServiceImpl implements EmailService {
             <table cellpadding="0" cellspacing="0" border="0" width="100%%" style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
                 <tr>
                     <td style="background: linear-gradient(135deg, #dc2626 0%%, #b91c1c 100%%); padding: 40px 30px; text-align: center; position: relative;">
-                        <img src="https://bfpc-api.onrender.com/header%%20image.png" alt="Agro Smart Benue" style="max-width: 180px; height: auto; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                        <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
-                        <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;">Empowering Farmers, Growing Communities</p>
+                        <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
+                        <p style="color: rgba(255,255,255,0.9); margin: 12px 0 0 0; font-size: 15px;">Empowering Farmers, Growing Communities</p>
                     </td>
                 </tr>
                 <tr>
@@ -344,9 +341,8 @@ public class MailgunEmailServiceImpl implements EmailService {
             <table cellpadding="0" cellspacing="0" border="0" width="100%%" style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
                 <tr>
                     <td style="background: linear-gradient(135deg, #16a34a 0%%, #15803d 100%%); padding: 40px 30px; text-align: center; position: relative;">
-                        <img src="https://bfpc-api.onrender.com/header%%20image.png" alt="Agro Smart Benue" style="max-width: 180px; height: auto; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                        <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
-                        <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;">Empowering Farmers, Growing Communities</p>
+                        <h1 style="color: white; margin: 0; font-size: 32px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Agro Smart Benue</h1>
+                        <p style="color: rgba(255,255,255,0.9); margin: 12px 0 0 0; font-size: 15px;">Empowering Farmers, Growing Communities</p>
                     </td>
                 </tr>
                 <tr>
