@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewRequest {
-    private Integer rating;
-    private String comment;
+public class ReadNotificationRequest {
+    private Long id;
 }

@@ -20,8 +20,9 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double rating;
+    private Integer rating;
     private String comment;
+    private String email;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

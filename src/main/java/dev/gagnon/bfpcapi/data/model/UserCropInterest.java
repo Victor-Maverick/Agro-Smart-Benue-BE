@@ -25,9 +25,6 @@ public class UserCropInterest {
     @JoinColumn(name = "crop_id", nullable = false)
     private Crop crop;
 
-    private boolean priceAlerts = true;
-    private boolean marketUpdates = true;
-
     @Setter(AccessLevel.NONE)
     private LocalDateTime createdAt;
 

@@ -29,6 +29,7 @@ public class ProductResponse {
     private boolean isAvailable;
     private String imageUrl;
     private String farmerName;
+    private String phone;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -44,6 +45,7 @@ public class ProductResponse {
         this.createdAt = product.getCreatedAt();
         this.updatedAt = product.getUpdatedAt();
         this.imageUrl = product.getImageUrl();
+        this.phone = product.getFarmer().getPhone();
         this.farmerName = product.getFarmer().getFirstName()
                 + " " + product.getFarmer().getLastName();
     }

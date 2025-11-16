@@ -87,4 +87,24 @@ public class MarketPriceController {
         marketPriceService.deleteMarketPrice(priceId);
         return ResponseEntity.ok(new BfpcApiResponse<>(true, null));
     }
+
+    @GetMapping("/crop/{cropId}/market/{market}")
+    public ResponseEntity<BfpcApiResponse<List<MarketPrice>>> getPricesByCropAndMarket(
+            @PathVariable Long cropId,
+            @PathVariable String market) {
+        List<MarketPrice> prices = marketPriceService.getPricesByCropAndMarket(cropId, market);
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, prices));
+    }
+
+    @GetMapping("/markets")
+    public ResponseEntity<BfpcApiResponse<List<String>>> getAllMarkets() {
+        List<String> markets = marketPriceService.getAllMarkets();
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, markets));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<BfpcApiResponse<List<MarketPrice>>> getAllPrices() {
+        List<MarketPrice> prices = marketPriceService.getAllPrices();
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, prices));
+    }
 }

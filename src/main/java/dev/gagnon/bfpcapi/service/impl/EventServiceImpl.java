@@ -7,6 +7,7 @@ import dev.gagnon.bfpcapi.data.repository.EventRepository;
 import dev.gagnon.bfpcapi.dto.request.EventRequest;
 import dev.gagnon.bfpcapi.exception.BusinessException;
 import dev.gagnon.bfpcapi.service.EventService;
+import dev.gagnon.bfpcapi.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ import static dev.gagnon.bfpcapi.utils.ServiceUtils.getMediaUrl;
 public class EventServiceImpl implements EventService {
     private final Cloudinary cloudinary;
     private final EventRepository eventRepository;
+    private final NotificationService notificationService;
+    private final dev.gagnon.bfpcapi.data.repository.UserRepository userRepository;
 
     private LocalDateTime parseIsoDateTime(String dateTimeString) {
         // Parse ISO 8601 format with 'Z' timezone (e.g., "2025-11-13T23:27:00.000Z")
@@ -51,7 +54,35 @@ public class EventServiceImpl implements EventService {
                 .isActive(true)
                 .build();
 
-        return eventRepository.save(event);
+        Event savedEvent = eventRepository.save(event);
+        
+        // Send notifications to all non-admin users
+        sendEventNotificationToUsers(savedEvent);
+        
+        return savedEvent;
+    }
+    
+    private void sendEventNotificationToUsers(Event event) {
+        // Get all users who are not ADMIN or SUPER_ADMIN
+        userRepository.findAll().stream()
+                .filter(user -> user.getRoles().stream()
+                        .noneMatch(role -> role.name().equals("ADMIN") || role.name().equals("SUPER_ADMIN")))
+                .forEach(user -> {
+                    dev.gagnon.bfpcapi.dto.request.NotificationEvent notificationEvent = 
+                        new dev.gagnon.bfpcapi.dto.request.NotificationEvent();
+                    notificationEvent.setEmail(user.getEmail());
+                    notificationEvent.setTitle("New Event: " + event.getTitle());
+                    notificationEvent.setMessage("A new event has been added: " + event.getTitle() + 
+                            ". Date: " + event.getEventDate());
+                    notificationEvent.setType("EVENT");
+                    
+                    try {
+                        notificationService.sendNotification(notificationEvent);
+                    } catch (Exception e) {
+                        // Log error but don't fail event creation
+                        System.err.println("Failed to send notification to " + user.getEmail());
+                    }
+                });
     }
 
     @Override

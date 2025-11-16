@@ -1,5 +1,6 @@
 package dev.gagnon.bfpcapi.dto.request;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewRequest {
-    private Integer rating;
-    private String comment;
+public class NotificationEvent {
+    private String title;
+    private String message;
+    private String email;
+    private String type;
 }

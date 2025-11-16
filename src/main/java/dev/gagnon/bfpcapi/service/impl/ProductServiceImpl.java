@@ -4,6 +4,7 @@ import com.cloudinary.Cloudinary;
 import dev.gagnon.bfpcapi.data.model.*;
 import dev.gagnon.bfpcapi.data.repository.*;
 import dev.gagnon.bfpcapi.dto.request.*;
+import dev.gagnon.bfpcapi.dto.response.ProductDemandResponse;
 import dev.gagnon.bfpcapi.dto.response.ProductResponse;
 import dev.gagnon.bfpcapi.exception.BFPCBaseException;
 import dev.gagnon.bfpcapi.exception.ResourceNotFoundException;
@@ -40,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
             throw new BFPCBaseException("user already added product, update product");
         String imageUrl = getMediaUrl(request.getImage(), cloudinary.uploader());
         Product product = modelMapper.map(request, Product.class);
+        product.setAvailable(true);
         product.setUnitPrice(BigDecimal.valueOf(request.getUnitPrice()));
         product.setFarmer(user);
         product.setImageUrl(imageUrl);
@@ -178,7 +180,7 @@ public class ProductServiceImpl implements ProductService {
 
     // Demand methods
     @Override
-    public ProductDemand createDemand(String buyerEmail, ProductDemandRequest request) {
+    public String createDemand(String buyerEmail, ProductDemandRequest request) {
         User buyer = getUserByEmail(buyerEmail);
         
         ProductDemand.ProductDemandBuilder demandBuilder = ProductDemand.builder()
@@ -189,6 +191,7 @@ public class ProductServiceImpl implements ProductService {
                 .quantityCategory(request.getQuantityCategory())
                 .location(request.getLocation())
                 .phoneContact(request.getPhoneContact())
+                .isActive(true)
                 .buyer(buyer);
         
         // Add crop if specified
@@ -199,18 +202,25 @@ public class ProductServiceImpl implements ProductService {
         }
         
         ProductDemand demand = demandBuilder.build();
-        return productDemandRepository.save(demand);
+        productDemandRepository.save(demand);
+        return "demand created successfully";
     }
 
     @Override
-    public List<ProductDemand> getAllActiveDemands() {
-        return productDemandRepository.findByIsActiveTrue();
+    public List<ProductDemandResponse> getAllActiveDemands() {
+        return productDemandRepository.findByIsActiveTrue()
+                .stream().map(
+                        ProductDemandResponse::new
+                ).toList();
     }
 
     @Override
-    public List<ProductDemand> getDemandsByUser(String email) {
+    public List<ProductDemandResponse> getDemandsByUser(String email) {
         User user = getUserByEmail(email);
-        return productDemandRepository.findByBuyer(user);
+        return productDemandRepository.findByBuyer(user)
+                .stream().map(
+                        ProductDemandResponse::new
+                ).toList();
     }
 
     // Demand response methods
@@ -296,6 +306,13 @@ public class ProductServiceImpl implements ProductService {
         demandResponseRepository.save(response);
         
         return "Response rejected successfully";
+    }
+
+    @Override
+    public ProductDemandResponse getDemandsById(Long id) {
+        ProductDemand demand = productDemandRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("demand not found"));
+        return new ProductDemandResponse(demand);
     }
 
     // Helper methods

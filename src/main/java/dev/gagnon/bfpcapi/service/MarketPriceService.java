@@ -14,6 +14,9 @@ public interface MarketPriceService {
     Page<MarketPrice> getRecentPricesPaginated(Pageable pageable);
     List<MarketPrice> getPricesByCrop(Long cropId);
     List<MarketPrice> getPricesByMarket(String market);
+    List<MarketPrice> getPricesByCropAndMarket(Long cropId, String market);
+    List<String> getAllMarkets();
+    List<MarketPrice> getAllPrices();
     MarketPrice updateMarketPrice(Long priceId, MarketPriceRequest request);
     MarketPrice updateOrCreateMarketPrice(MarketPriceRequest request);
     List<MarketPrice> getPricesByCropGroupedByMarket(Long cropId);

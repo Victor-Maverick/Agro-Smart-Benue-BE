@@ -84,4 +84,15 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/check-existing")
+    public ResponseEntity<?> checkExistingReview(@RequestParam String email) {
+        try{
+            boolean exists = reviewService.hasUserReviewed(email);
+            return new ResponseEntity<>(exists, HttpStatus.OK);
+        }
+        catch (BFPCBaseException ex){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

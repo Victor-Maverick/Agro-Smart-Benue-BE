@@ -17,4 +17,6 @@ public interface ReviewService {
     String updateReview(Long id, ReviewRequest request);
 
     String deleteReviews();
+    
+    boolean hasUserReviewed(String email);
 }

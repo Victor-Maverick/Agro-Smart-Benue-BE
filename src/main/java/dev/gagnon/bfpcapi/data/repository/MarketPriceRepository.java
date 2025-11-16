@@ -28,4 +28,13 @@ public interface MarketPriceRepository extends JpaRepository<MarketPrice, Long> 
     
     @Query("SELECT mp FROM MarketPrice mp WHERE mp.crop.id = :cropId ORDER BY mp.priceDate DESC")
     List<MarketPrice> findByCropIdOrderByPriceDateDesc(@Param("cropId") Long cropId);
+    
+    @Query("SELECT mp FROM MarketPrice mp WHERE mp.crop.id = :cropId AND mp.market = :market ORDER BY mp.priceDate DESC")
+    List<MarketPrice> findByCropIdAndMarket(@Param("cropId") Long cropId, @Param("market") String market);
+    
+    @Query("SELECT DISTINCT mp.market FROM MarketPrice mp ORDER BY mp.market")
+    List<String> findAllDistinctMarkets();
+    
+    @Query("SELECT mp FROM MarketPrice mp ORDER BY mp.priceDate DESC")
+    List<MarketPrice> findAllOrderByPriceDateDesc();
 }

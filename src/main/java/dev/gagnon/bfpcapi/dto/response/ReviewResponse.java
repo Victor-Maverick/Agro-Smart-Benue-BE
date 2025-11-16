@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 public class ReviewResponse {
     private Long id;
     private String comment;
-    private Double rating;
+    private Integer rating;
+    private String email;
     private String reviewerName;
     private String reviewerRole;
     private String reviewerLocation;
@@ -24,6 +25,7 @@ public class ReviewResponse {
         this.id = review.getId();
         this.comment = review.getComment();
         this.rating = review.getRating();
+        this.email = review.getEmail();
         this.reviewedAt = review.getCreatedAt().toLocalDate();
         this.reviewerName = review.getUser().getFirstName() + " " + review.getUser().getLastName();
         //space for reviewer location

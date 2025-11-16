@@ -4,12 +4,12 @@ import dev.gagnon.bfpcapi.dto.request.ProductRequest;
 import dev.gagnon.bfpcapi.dto.request.ProductBidRequest;
 import dev.gagnon.bfpcapi.dto.request.ProductDemandRequest;
 import dev.gagnon.bfpcapi.dto.request.DemandResponseRequest;
+import dev.gagnon.bfpcapi.dto.response.ProductDemandResponse;
 import dev.gagnon.bfpcapi.dto.response.ProductResponse;
 import dev.gagnon.bfpcapi.dto.response.BfpcApiResponse;
 import dev.gagnon.bfpcapi.exception.BFPCBaseException;
 import dev.gagnon.bfpcapi.service.ProductService;
 import dev.gagnon.bfpcapi.data.model.ProductBid;
-import dev.gagnon.bfpcapi.data.model.ProductDemand;
 import dev.gagnon.bfpcapi.data.model.DemandResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -126,10 +126,10 @@ public class ProductController {
     }
 
     // Product Demand Endpoints
-    @PostMapping("/demand")
+    @PostMapping("/demands")
     public ResponseEntity<?> createDemand(@RequestParam String buyerEmail, @RequestBody ProductDemandRequest request) {
         try{
-            ProductDemand demand = productService.createDemand(buyerEmail, request);
+            String demand = productService.createDemand(buyerEmail, request);
             return ResponseEntity.ok(new BfpcApiResponse<>(true, demand));
         }
         catch (BFPCBaseException ex){
@@ -140,7 +140,7 @@ public class ProductController {
     @GetMapping("/demands")
     public ResponseEntity<?> getAllDemands() {
         try{
-            List<ProductDemand> demands = productService.getAllActiveDemands();
+            List<ProductDemandResponse> demands = productService.getAllActiveDemands();
             return ResponseEntity.ok(new BfpcApiResponse<>(true, demands));
         }
         catch (BFPCBaseException ex){
@@ -151,8 +151,18 @@ public class ProductController {
     @GetMapping("/demands/by-user")
     public ResponseEntity<?> getDemandsByUser(@RequestParam String email) {
         try{
-            List<ProductDemand> demands = productService.getDemandsByUser(email);
+            List<ProductDemandResponse> demands = productService.getDemandsByUser(email);
             return ResponseEntity.ok(new BfpcApiResponse<>(true, demands));
+        }
+        catch (BFPCBaseException ex){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+    @GetMapping("/demands/by-id")
+    public ResponseEntity<?> getDemandsById(@RequestParam Long id) {
+        try{
+            ProductDemandResponse demand = productService.getDemandsById(id);
+            return ResponseEntity.ok(new BfpcApiResponse<>(true, demand));
         }
         catch (BFPCBaseException ex){
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);

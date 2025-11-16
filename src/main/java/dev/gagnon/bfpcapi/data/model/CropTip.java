@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -11,36 +13,32 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Builder
-@Table(name = "markets")
-public class Market {
+public class CropTip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
-    private String name;
+    private String title;
     
-    @Column(nullable = false)
-    private String lga;
-    
-    private String state;
+    @Column(length = 5000)
     private String description;
-    private String address;
+    
+    @ElementCollection
+    @CollectionTable(name = "crop_tip_images", joinColumns = @JoinColumn(name = "crop_tip_id"))
+    @Column(name = "image_url")
+    private List<String> imageUrls = new ArrayList<>();
     
     @Setter(AccessLevel.NONE)
     private LocalDateTime createdAt;
-    
+
     @Setter(AccessLevel.NONE)
     private LocalDateTime updatedAt;
 
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
-        if (this.state == null) {
-            this.state = "Benue";
-        }
     }
-
+    
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();

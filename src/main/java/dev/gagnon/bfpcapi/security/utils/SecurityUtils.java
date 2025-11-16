@@ -27,7 +27,10 @@ public class SecurityUtils {
                 "/api/markets/**",
                 "/api/locations/**",
                 "/api/products/**",
-                "/api/product-demands/**"
+                "/api/crop-tips/all",
+                "/api/crop-tips/{id}",
+                "/api/reviews/all",
+                "/api/reviews/check-existing"
     );
 
 }

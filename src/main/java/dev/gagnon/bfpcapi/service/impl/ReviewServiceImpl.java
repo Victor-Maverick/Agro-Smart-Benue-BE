@@ -25,10 +25,16 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public String createReview(String email,ReviewRequest request) {
+        // Check if user has already reviewed
+        if (reviewRepository.existsByEmail(email)) {
+            throw new ResourceNotFoundException("You have already submitted a review");
+        }
+        
         Review review = modelMapper.map(request, Review.class);
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new ResourceNotFoundException("user not found"));
         review.setUser(user);
+        review.setEmail(email);
         reviewRepository.save(review);
         return "Review added successfully";
     }
@@ -71,5 +77,10 @@ public class ReviewServiceImpl implements ReviewService {
         List<Review> reviews = reviewRepository.findAll();
         reviewRepository.deleteAll(reviews);
         return "All reviews deleted successfully";
+    }
+
+    @Override
+    public boolean hasUserReviewed(String email) {
+        return reviewRepository.existsByEmail(email);
     }
 }

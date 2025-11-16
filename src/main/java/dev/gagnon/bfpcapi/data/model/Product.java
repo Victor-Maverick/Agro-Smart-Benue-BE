@@ -28,6 +28,7 @@ public class Product {
     private String location;
     private boolean isAvailable;
     private String imageUrl;
+    private String phoneContact; // Contact phone number for the product
     @ManyToOne
     @JoinColumn(name = "farmer_id")
     private User farmer;

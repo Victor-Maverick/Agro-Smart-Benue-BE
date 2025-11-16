@@ -170,4 +170,19 @@ public class MarketPriceServiceImpl implements MarketPriceService {
                 .orElseThrow(() -> new BusinessException("Market price not found"));
         marketPriceRepository.delete(marketPrice);
     }
+
+    @Override
+    public List<MarketPrice> getPricesByCropAndMarket(Long cropId, String market) {
+        return marketPriceRepository.findByCropIdAndMarket(cropId, market);
+    }
+
+    @Override
+    public List<String> getAllMarkets() {
+        return marketPriceRepository.findAllDistinctMarkets();
+    }
+
+    @Override
+    public List<MarketPrice> getAllPrices() {
+        return marketPriceRepository.findAllOrderByPriceDateDesc();
+    }
 }

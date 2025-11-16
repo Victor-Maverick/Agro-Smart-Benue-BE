@@ -4,6 +4,7 @@ import dev.gagnon.bfpcapi.dto.request.ProductRequest;
 import dev.gagnon.bfpcapi.dto.request.ProductBidRequest;
 import dev.gagnon.bfpcapi.dto.request.ProductDemandRequest;
 import dev.gagnon.bfpcapi.dto.request.DemandResponseRequest;
+import dev.gagnon.bfpcapi.dto.response.ProductDemandResponse;
 import dev.gagnon.bfpcapi.dto.response.ProductResponse;
 import dev.gagnon.bfpcapi.data.model.ProductBid;
 import dev.gagnon.bfpcapi.data.model.ProductDemand;
@@ -32,11 +33,11 @@ public interface ProductService {
     String rejectBid(Long bidId);
 
     // Demand methods
-    ProductDemand createDemand(String buyerEmail, ProductDemandRequest request);
+    String createDemand(String buyerEmail, ProductDemandRequest request);
     
-    List<ProductDemand> getAllActiveDemands();
+    List<ProductDemandResponse> getAllActiveDemands();
     
-    List<ProductDemand> getDemandsByUser(String email);
+    List<ProductDemandResponse> getDemandsByUser(String email);
 
     // Demand response methods
     DemandResponse respondToDemand(String supplierEmail, DemandResponseRequest request);
@@ -46,4 +47,6 @@ public interface ProductService {
     String acceptDemandResponse(Long responseId);
     
     String rejectDemandResponse(Long responseId);
+
+    ProductDemandResponse getDemandsById(Long id);
 }
