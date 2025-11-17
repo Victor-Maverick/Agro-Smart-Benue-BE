@@ -31,8 +31,8 @@ public class ReviewServiceImpl implements ReviewService {
         }
         
         Review review = modelMapper.map(request, Review.class);
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(()-> new ResourceNotFoundException("user not found"));
+        // Try to find user by email, but allow review without user (for non-authenticated users)
+        User user = userRepository.findByEmail(email).orElse(null);
         review.setUser(user);
         review.setEmail(email);
         reviewRepository.save(review);
@@ -82,5 +82,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public boolean hasUserReviewed(String email) {
         return reviewRepository.existsByEmail(email);
+    }
+
+    @Override
+    public long getReviewCount() {
+        return reviewRepository.count();
     }
 }

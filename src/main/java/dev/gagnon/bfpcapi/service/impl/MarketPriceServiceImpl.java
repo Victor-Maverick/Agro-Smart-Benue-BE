@@ -136,10 +136,10 @@ public class MarketPriceServiceImpl implements MarketPriceService {
                 .map(entry -> {
                     Map<String, Object> item = new HashMap<>();
                     item.put("name", entry.getKey());
-                    item.put("value", Math.round(entry.getValue()));
+                    item.put("value", (long) Math.round(entry.getValue())); // Cast to Long to avoid ClassCastException
                     return item;
                 })
-                .sorted((a, b) -> Double.compare((Double)b.get("value"), (Double)a.get("value")))
+                .sorted((a, b) -> Long.compare((Long)b.get("value"), (Long)a.get("value")))
                 .limit(10)
                 .collect(Collectors.toList());
         

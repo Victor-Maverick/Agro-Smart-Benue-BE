@@ -21,9 +21,11 @@ public class UserResponse {
     private List<String> roles;
     private String phone;
     private String imageUrl;
+    private String status;
     public UserResponse(User user) {
         this.id = user.getId();
         this.firstName = user.getFirstName();
+        this.status = String.valueOf(user.getStatus());
         this.lastName =user.getLastName();
         this.email = user.getEmail();
         this.createdAt = user.getCreatedAt();

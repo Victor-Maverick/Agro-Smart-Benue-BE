@@ -95,4 +95,15 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<?> getReviewCount() {
+        try{
+            long count = reviewService.getReviewCount();
+            return new ResponseEntity<>(count, HttpStatus.OK);
+        }
+        catch (BFPCBaseException ex){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

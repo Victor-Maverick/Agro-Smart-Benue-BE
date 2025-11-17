@@ -34,4 +34,22 @@ public class CropController {
         return ResponseEntity.ok(new BfpcApiResponse<>(true, crop));
     }
 
+    @PostMapping
+    public ResponseEntity<BfpcApiResponse<Crop>> createCrop(@RequestBody Crop crop) {
+        Crop createdCrop = cropService.createCrop(crop);
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, createdCrop));
+    }
+
+    @PutMapping("/{cropId}")
+    public ResponseEntity<BfpcApiResponse<Crop>> updateCrop(@PathVariable Long cropId, @RequestBody Crop crop) {
+        Crop updatedCrop = cropService.updateCrop(cropId, crop);
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, updatedCrop));
+    }
+
+    @DeleteMapping("/{cropId}")
+    public ResponseEntity<BfpcApiResponse<Void>> deleteCrop(@PathVariable Long cropId) {
+        cropService.deleteCrop(cropId);
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, null));
+    }
+
 }

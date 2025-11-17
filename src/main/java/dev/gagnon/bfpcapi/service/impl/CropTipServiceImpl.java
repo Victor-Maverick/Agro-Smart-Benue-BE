@@ -104,8 +104,6 @@ public class CropTipServiceImpl implements CropTipService {
 
     @Override
     public List<CropTipResponse> getAllCropTips() {
-        log.info("Fetching all crop tips");
-        
         return cropTipRepository.findAll().stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());

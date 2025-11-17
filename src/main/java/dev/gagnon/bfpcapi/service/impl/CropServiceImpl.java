@@ -35,4 +35,27 @@ public class CropServiceImpl implements CropService {
     public Crop createCrop(Crop crop) {
         return cropRepository.save(crop);
     }
+
+    @Override
+    public Crop updateCrop(Long cropId, Crop crop) {
+        Crop existingCrop = cropRepository.findById(cropId)
+                .orElseThrow(() -> new BusinessException("Crop not found"));
+        
+        existingCrop.setName(crop.getName());
+        existingCrop.setCategory(crop.getCategory());
+        existingCrop.setDescription(crop.getDescription());
+        existingCrop.setPlantingSeason(crop.getPlantingSeason());
+        existingCrop.setHarvestSeason(crop.getHarvestSeason());
+        existingCrop.setGrowthPeriodDays(crop.getGrowthPeriodDays());
+        existingCrop.setImageUrl(crop.getImageUrl());
+        
+        return cropRepository.save(existingCrop);
+    }
+
+    @Override
+    public void deleteCrop(Long cropId) {
+        Crop crop = cropRepository.findById(cropId)
+                .orElseThrow(() -> new BusinessException("Crop not found"));
+        cropRepository.delete(crop);
+    }
 }

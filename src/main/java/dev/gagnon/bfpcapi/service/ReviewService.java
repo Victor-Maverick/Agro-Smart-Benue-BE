@@ -19,4 +19,6 @@ public interface ReviewService {
     String deleteReviews();
     
     boolean hasUserReviewed(String email);
+    
+    long getReviewCount();
 }

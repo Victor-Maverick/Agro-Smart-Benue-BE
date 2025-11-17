@@ -223,6 +223,7 @@ public class UserServiceImpl implements UserService {
                 .email(request.getEmail())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .phone(request.getPhone())
                 .status(VERIFIED)
                 .password(passwordEncoder.encode(request.getPassword()));
         User user = userBuilder.build();
@@ -300,5 +301,13 @@ public class UserServiceImpl implements UserService {
     public Long getUserIdByEmail(String email) {
         User user = getUserByEmail(email);
         return user.getId();
+    }
+
+    @Override
+    public String activate(String email) {
+        User user = getUserByEmail(email);
+        user.setStatus(VERIFIED);
+        userRepository.save(user);
+        return "user activated";
     }
 }

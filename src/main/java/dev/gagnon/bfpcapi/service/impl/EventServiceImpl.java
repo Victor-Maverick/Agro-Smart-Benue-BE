@@ -144,4 +144,11 @@ public class EventServiceImpl implements EventService {
     public List<Event> getAllByEventMode(String mode) {
         return eventRepository.findByEventMode(EventMode.valueOf(mode.toUpperCase()));
     }
+
+    @Override
+    public Long getEventCount() {
+        return (long) eventRepository
+                .findAll()
+                .size();
+    }
 }

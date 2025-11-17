@@ -80,6 +80,17 @@ public class UserController {
         }
     }
 
+    @PutMapping("/activate")
+    public ResponseEntity<?>activateUser(@RequestParam String email) {
+        try{
+            String response = userService.activate(email);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(),BAD_REQUEST);
+        }
+    }
+
 
     @GetMapping("/get-profile")
     public ResponseEntity<?>getUserProfile(@RequestParam String email){

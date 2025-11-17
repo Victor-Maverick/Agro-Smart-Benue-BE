@@ -70,4 +70,16 @@ public class EventController {
         eventService.deleteEvent(eventId);
         return ResponseEntity.ok(new BfpcApiResponse<>(true, null));
     }
+
+    @GetMapping("/count")
+    public ResponseEntity<BfpcApiResponse<Long>> getEventCount() {
+        Long count = eventService.getEventCount();
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, count));
+    }
+
+    @GetMapping("/active-count")
+    public ResponseEntity<BfpcApiResponse<Long>> getActiveEventCount() {
+        Long count = (long) eventService.getUpcomingEvents().size();
+        return ResponseEntity.ok(new BfpcApiResponse<>(true, count));
+    }
 }

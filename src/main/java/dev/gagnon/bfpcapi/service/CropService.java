@@ -9,4 +9,6 @@ public interface CropService {
     List<Crop> getCropsByCategory(String category);
     Crop getCropById(Long cropId);
     Crop createCrop(Crop crop);
+    Crop updateCrop(Long cropId, Crop crop);
+    void deleteCrop(Long cropId);
 }

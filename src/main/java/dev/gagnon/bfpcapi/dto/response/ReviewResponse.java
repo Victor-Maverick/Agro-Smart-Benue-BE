@@ -27,8 +27,12 @@ public class ReviewResponse {
         this.rating = review.getRating();
         this.email = review.getEmail();
         this.reviewedAt = review.getCreatedAt().toLocalDate();
-        this.reviewerName = review.getUser().getFirstName() + " " + review.getUser().getLastName();
-        //space for reviewer location
-        //space for reviewer role
+        if (review.getUser() != null) {
+            this.reviewerName = review.getUser().getFirstName() + " " + review.getUser().getLastName();
+            //space for reviewer location
+            //space for reviewer role
+        } else {
+            this.reviewerName = "Anonymous";
+        }
     }
 }

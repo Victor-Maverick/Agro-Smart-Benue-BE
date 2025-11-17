@@ -18,4 +18,6 @@ public interface EventService {
     List<Event> getAllByEventType(String eventType);
 
     List<Event> getAllByEventMode(String mode);
+
+    Long getEventCount();
 }

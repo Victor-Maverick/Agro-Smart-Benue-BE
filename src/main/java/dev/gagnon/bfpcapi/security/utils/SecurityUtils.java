@@ -13,24 +13,15 @@ public class SecurityUtils {
                 "/api/auth/login",
                 "/api/auth/logout",
                 "/api/auth/**",
-                "/api/users/resend-verification",
-                "/api/users/register",
-                "/api/auth/test-email",
-                "/api/users/verify",
-                "/api/users/all",
-                "/api/auth/forgot-password",
-                "/api/users/dashboard-redirect",
-                "/api/auth/reset-password",
+                "/api/users/**",
                 "/api/crops/**",
                 "/api/events/**",
                 "/api/market-prices/**",
                 "/api/markets/**",
                 "/api/locations/**",
                 "/api/products/**",
-                "/api/crop-tips/all",
-                "/api/crop-tips/{id}",
-                "/api/reviews/all",
-                "/api/reviews/check-existing"
+                "/api/crop-tips/**",
+                "/api/reviews/**"
     );
 
 }

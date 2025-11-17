@@ -70,6 +70,7 @@ public class NotificationController {
         notificationService.deleteNotification(id);
         return ResponseEntity.ok().build();
     }
+
     @DeleteMapping("/deleteAllUser")
     public ResponseEntity<?> deleteNotificationById(@RequestParam String email){
         notificationService.deleteUserNotifications(email);

@@ -48,4 +48,6 @@ public interface UserService {
     // Profile-related methods
     User getUserByEmail(String email);
     Long getUserIdByEmail(String email);
+
+    String activate(String email);
 }
