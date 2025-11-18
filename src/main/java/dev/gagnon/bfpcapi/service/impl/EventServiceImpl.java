@@ -126,8 +126,7 @@ public class EventServiceImpl implements EventService {
     @Override
     public void deleteEvent(Long eventId) {
         Event event = getEventById(eventId);
-        event.setActive(false);
-        eventRepository.save(event);
+        eventRepository.delete(event);
     }
 
     @Override
