@@ -49,4 +49,6 @@ public interface ProductService {
     String rejectDemandResponse(Long responseId);
 
     ProductDemandResponse getDemandsById(Long id);
+
+    List<ProductResponse> findAllAvailable();
 }

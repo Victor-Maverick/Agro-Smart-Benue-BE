@@ -90,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> findAll() {
-        List<Product> products = productRepository.findByIsAvailableTrue();
+        List<Product> products = productRepository.findAll();
         return products.stream()
                 .map(ProductResponse::new)
                 .collect(Collectors.toList());
@@ -313,6 +313,14 @@ public class ProductServiceImpl implements ProductService {
         ProductDemand demand = productDemandRepository.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException("demand not found"));
         return new ProductDemandResponse(demand);
+    }
+
+    @Override
+    public List<ProductResponse> findAllAvailable() {
+        List<Product> products = productRepository.findByIsAvailableTrue();
+        return products.stream()
+                .map(ProductResponse::new)
+                .collect(Collectors.toList());
     }
 
     // Helper methods

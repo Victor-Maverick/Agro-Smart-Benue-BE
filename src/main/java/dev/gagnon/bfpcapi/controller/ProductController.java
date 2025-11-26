@@ -69,6 +69,17 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/all-available")
+    public ResponseEntity<?> findAllAvailable() {
+        try{
+            List<ProductResponse> products = productService.findAllAvailable();
+            return new ResponseEntity<>(products, HttpStatus.OK);
+        }
+        catch (BFPCBaseException ex){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/by-user")
     public ResponseEntity<?> getProductsByUser(@RequestParam String email) {
         try{
