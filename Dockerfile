@@ -24,5 +24,5 @@ COPY --from=build /app/target/*.jar app.jar
 # Expose the Spring Boot port
 EXPOSE 8983
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run with memory constraints for 1GB VM
+ENTRYPOINT ["java", "-Xms128m", "-Xmx256m", "-XX:+UseSerialGC", "-XX:MaxMetaspaceSize=128m", "-jar", "app.jar"]
